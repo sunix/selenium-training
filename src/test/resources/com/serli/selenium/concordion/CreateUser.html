@@ -1,0 +1,27 @@
+<html xmlns:c="http://www.concordion.org/2007/concordion">
+<body>
+<div class="md">
+#Given
+- The user <span c:set="#username">admin</span> with password <span c:set="#adminpassword">admin</span>
+- A user, with the following informations, needs an account in the application:
+  	- a last name <span c:set="#lastname">Doe</span>
+	- a first name <span c:set="#firstname">John</span>
+	- a password <span c:set="#password">apassword</span>
+	- an email <span c:set="#email">john@doe.name</span>
+	- an address <span c:set="#address">34 sturt street</span>
+
+#When
+- The admin <span c:assertEquals="login(#username, #adminpassword)">logs in</span> localhost:9000
+- The admin <span c:assertEquals="createUser(#lastname, #firstname, #password, #email, #address)">creates</span> the new user in the application
+
+#Then
+- The created user <span c:assertEquals="checkUserInDisplayedInTheList(#email)">is displayed</span> in the list
+- The admin user <span c:assertEquals="deleteUser(#email)">deletes</span> the user
+
+</div>
+<script type="text/javascript" src="../../../../scripts/jquery-1.9.0.min.js"> </script>
+<script type="text/javascript" src="../../../../scripts/Markdown.Converter.js"> </script>
+<script type="text/javascript" src="../../../../scripts/Markdown.ClassConvert.js"> </script>
+</body>
+
+</html>
